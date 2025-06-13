@@ -25,24 +25,27 @@
 ## 2. Architecture Diagram
 
 ```mermaid
-flowchart TD
+fflowchart TD
   subgraph Clients
     A[API Clients]
   end
 
   subgraph API Layer
     A --> F[HTTP Trigger Function]
-    F --> Decision{Timestamp < 3 months?}
-    Decision -->|Yes| C[Cosmos DB\n(Serverless)]
-    Decision -->|No| B[Blob Storage\n(Cool Tier)]
+    F --> Decision{Timestamp < 3 months?}
+    Decision -->|Yes| C(("Cosmos DB
+(Serverless)"))
+    Decision -->|No| B(("Blob Storage
+(Cool Tier)"))
   end
 
   subgraph Archival
-    T[Timer Trigger\n(Function/Logic App)] --> G[Archiver Function]
+    T(("Timer Trigger
+(Function/Logic App)")) --> G[Archiver Function]
     G --> B
     G --> C[Delete from Cosmos]
   end
-
+  
 ```
 
 ---
