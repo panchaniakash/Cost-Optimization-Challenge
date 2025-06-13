@@ -1,0 +1,17 @@
+flowchart TD
+  subgraph Clients
+    A[API Clients]
+  end
+
+  subgraph API Layer
+    A --> F[HTTP Trigger Function]
+    F --> Decision{Timestamp < 3 months?}
+    Decision -->|Yes| C[Cosmos DB<br/>(Serverless)]
+    Decision -->|No| B[Blob Storage<br/>(Cool Tier)]
+  end
+
+  subgraph Archival
+    T[Timer Trigger<br/>(Function/Logic App)] --> G[Archiver Function]
+    G --> B
+    G --> C[Delete from Cosmos]
+  end
