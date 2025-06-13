@@ -32,13 +32,13 @@ flowchart TD
 
   subgraph API Layer
     A --> F[HTTP Trigger Function]
-    F --> Decision{Timestamp < 3 months?}
-    Decision -->|Yes| C[Cosmos DB (Serverless)]
-    Decision -->|No| B[Blob Storage (Cool Tier)]
+    F --> Decision{Timestamp < 3 months?}
+    Decision -->|Yes| C[Cosmos DB<br/>(Serverless)]
+    Decision -->|No| B[Blob Storage<br/>(Cool Tier)]
   end
 
   subgraph Archival
-    T[Timer Trigger] --> G[Archiver Function]
+    T[Timer Trigger<br/>(Function/Logic App)] --> G[Archiver Function]
     G --> B
     G --> C[Delete from Cosmos]
   end
