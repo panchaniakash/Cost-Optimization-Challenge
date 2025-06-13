@@ -25,7 +25,7 @@
 ## 2. Architecture Diagram
 
 ```mermaid
-fflowchart TD
+flowchart TD
   subgraph Clients
     A[API Clients]
   end
